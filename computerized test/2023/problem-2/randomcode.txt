@@ -1,0 +1,37 @@
+class MersenneTwister {
+public:
+    MersenneTwister() {
+        index = 0;
+        mt[0] = 2023; // seed
+        for (int i = 1; i < 624; ++i) {
+            mt[i] = (0x6C078965 * (mt[i-1] ^ (mt[i-1] >> 30)) + i)
+                & 0xFFFFFFFF;
+        }
+    }
+
+    unsigned int generate() {
+        if (index == 0) {
+            for (int i = 0; i < 624; ++i) {
+                unsigned int y =
+                    ((mt[i] & 0x80000000) + (mt[(i + 1) % 624] & 0x7FFFFFFF))
+                    & 0xFFFFFFFF;
+                mt[i] = mt[(i + 397) % 624] ^ (y >> 1);
+                if (y % 2 != 0) {
+                    mt[i] ^= 0x9908B0DF;
+                }
+            }
+        }
+
+        unsigned int y = mt[index];
+        y ^= (y >> 11);
+        y ^= ((y << 7) & 0x9D2C5680);
+        y ^= ((y << 15) & 0xEFC60000);
+        y ^= (y >> 18);
+
+        index = (index + 1) % 624;
+        return y;
+    }
+
+    unsigned int mt[624];
+    int index;
+};
