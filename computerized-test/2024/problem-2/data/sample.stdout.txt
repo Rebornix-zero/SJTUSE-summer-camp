@@ -1,0 +1,13 @@
+6 1 1 0
+1004: (C)yesSe2024
+1002 se2024
+1004 se2026
+1006 se2028
+1 2 Local
+2 3 Local
+3 2 Local
+Mini cost is: 7
+A: 1002 1005 1006 1007 
+B: 1003 
+C: 1004 
+Mini cost after reorg is: 3

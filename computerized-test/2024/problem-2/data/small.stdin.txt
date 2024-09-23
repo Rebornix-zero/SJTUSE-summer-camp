@@ -1,0 +1,2 @@
+data/small-info.txt
+data/small-ops.txt
